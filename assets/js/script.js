@@ -2,7 +2,6 @@ $(document).ready(function () {
     let currentVinIndex = 0;
     const vins = $('.vin-item');
     const totalVins = vins.length;
-    const contentSections = $('.content-section');
 
     function showVin(index) {
         vins.hide();
@@ -19,64 +18,79 @@ $(document).ready(function () {
         showVin(currentVinIndex);
     });
 
-    $('.link').click(function (e) {
-        if ($(window).width() >= 1000) {
-            e.preventDefault();
-            const target = $(this).attr('href');
-            contentSections.hide();
-            $(target).show();
-        }
-    });
-
     function adjustLayout() {
         if ($(window).width() < 1000) {
-            contentSections.show();
+            $('.content-section').show();
         } else {
-            contentSections.hide();
+            $('.content-section').hide();
             $('#accueil').show();
         }
     }
 
     $(window).resize(adjustLayout);
-
     adjustLayout();
-
     showVin(currentVinIndex);
+
+    $('.link').click(function (e) {
+        if ($(window).width() >= 1000) {
+            e.preventDefault();
+            const target = $(this).attr('href');
+            $('.content-section').hide();
+            $(target).show();
+        }
+    });
 
     function normalizeKey(key) {
         return key
+            .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-zA-Z0-9 ]/g, "")
-            .replace(/\s+/g, " ")
-            .trim()
-            .toLowerCase();
+            .replace(/[^a-z0-9 ]/g, "")
+            .trim();
     }
 
-    function updatePrices() {
+    function updateContent() {
         $.ajax({
             url: "/assets/js/data.json",
             method: "GET",
             dataType: "json",
             success: function (data) {
-                console.log("JSON data loaded:", data);
-                if (data) {
+                if (data.wines) {
                     $('.vin-item').each(function () {
-                        const vinTitle = $(this).find('h2').text().trim();
-                        const normalizedTitle = normalizeKey(vinTitle);
-                        console.log("Checking vinTitle:", vinTitle, "Normalized:", normalizedTitle);
-
-                        for (const [key, value] of Object.entries(data)) {
-                            const normalizedKey = normalizeKey(key);
-                            console.log("Comparing JSON key:", key, "Normalized:", normalizedKey);
-
-                            if (normalizedKey === normalizedTitle) {
-                                const priceElement = $(this).find('p[class$="-prix"]');
-                                console.log("Match found for:", vinTitle, "Price:", value);
-                                priceElement.text(value.toFixed(2));
+                        const vinKey = normalizeKey($(this).data('vin'));
+                        for (const [key, value] of Object.entries(data.wines)) {
+                            if (vinKey === normalizeKey(key)) {
+                                $(this).find('.prix').text(value.toFixed(2));
                                 break;
                             }
                         }
+                    });
+                }
+                if (data.salons) {
+                    const salonsContainer = $('#salons-content');
+                    salonsContainer.empty();
+                    data.salons.forEach(salon => {
+                        const salonItem = `
+                            <div class="salon-item">
+                                <p><strong>Lieu:</strong> ${salon.location}</p>
+                                <p><strong>Édition:</strong> ${salon.edition}</p>
+                                <p><strong>Date:</strong> ${salon.date}</p>
+                            </div>
+                        `;
+                        salonsContainer.append(salonItem);
+                    });
+                }
+                if (data.news) {
+                    const newsContainer = $('#actualites-content');
+                    newsContainer.empty();
+                    data.news.forEach(news => {
+                        const newsItem = `
+                            <div class="news-item">
+                                <img src="${news.image}" alt="Actualité Image">
+                                <p>${news.description}</p>
+                            </div>
+                        `;
+                        newsContainer.append(newsItem);
                     });
                 }
             },
@@ -85,6 +99,5 @@ $(document).ready(function () {
             }
         });
     }
-
-    updatePrices();
+    updateContent();
 });
