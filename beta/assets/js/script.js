@@ -3,7 +3,6 @@ $(document).ready(function () {
     const vins = $('.vin-item');
     const totalVins = vins.length;
     const contentSections = $('.content-section');
-    const dataURL = "https://script.google.com/macros/s/AKfycbzzSDzFGYA3VNSCjz9sy5RBxju4nDroqG8gyejiAobJHz-LwXD-L-2KXV3v08Tfxi1D/exec";
 
     function showVin(index) {
         vins.hide();
@@ -34,23 +33,24 @@ $(document).ready(function () {
             contentSections.show();
         } else {
             contentSections.hide();
-            $('#accueil').show();
+            $('#accueil').show(); // Show the first section by default
         }
     }
 
     $(window).resize(adjustLayout);
 
-    adjustLayout();
+    adjustLayout(); // Initial check
 
     showVin(currentVinIndex);
 
     function updatePrices() {
         $.ajax({
-            url: dataURL,
+            url: "https://raw.githubusercontent.com/NomDeVotreUtilisateur/NomDeVotreDepot/main/assets/data.json", // URL du fichier JSON brut sur GitHub
             method: "GET",
             dataType: "json",
             success: function (data) {
                 if (data) {
+                    // Met à jour les prix dans le DOM
                     $('.vin-item').each(function () {
                         const vinName = $(this).find('h2').text().trim();
                         if (data[vinName]) {
@@ -61,7 +61,7 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
-                console.error("Erreur lors de la récupération des données : ", error);
+                console.error("Erreur lors du chargement du JSON : ", error);
             }
         });
     }
