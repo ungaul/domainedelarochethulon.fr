@@ -1,28 +1,28 @@
 {
   "wines": {
-    "Primeur": 8.2,
-    "Regnie": 9.7,
-    "Morgon": 10.2,
-    "Cote de Brouilly": 10.2,
-    "Vieilles Vignes": 8.2,
-    "Rose": 8.2,
-    "Chardonnay": 10,
-    "Eclat de Gamay": 10.4
+    "Primeur": 8.4,
+    "Regnie": 9.9,
+    "Morgon": 10.4,
+    "Cote de Brouilly": 10.4,
+    "Vieilles Vignes": 8.4,
+    "Rose": 8.4,
+    "Chardonnay": 10.2,
+    "Eclat de Gamay": 10.6
   },
   "salons": [
     {
       "location": "Compiegne - Place Saint-Jacques",
-      "edition": "35?me Foire aux Vins et Fromage de Compi?gne",
-      "date": "1 et 2 Juin 2024"
+      "edition": "36?me Foire aux Vins et Fromage de Compi?gne",
+      "date": "31 Mai et 1er Juin 2024"
     },
     {
       "location": "Arpajon - Sous la halle du march? d'Arpajon",
       "edition": "32?me Salon des Vins et Fromages",
-      "date": "8 et 9 Juin 2024"
+      "date": "7 et 8 Juin 2025"
     },
     {
       "location": "Senlis - Quartier Ordener 6/8 rue des Jardiniers",
-      "edition": "31?me Salon des Vins",
+      "edition": "30?me Salon des Vins",
       "date": "15, 16 et 17 Novembre 2024"
     },
     {
