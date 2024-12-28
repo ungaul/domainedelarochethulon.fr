@@ -225,6 +225,11 @@ section {
     max-width: 20vw;
 }
 
+.vin-item p{
+    display: flex;
+    gap: 5px;
+}
+
 .vin-item div {
     display: flex;
     flex-direction: column;

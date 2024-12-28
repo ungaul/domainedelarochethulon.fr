@@ -43,19 +43,21 @@ $(document).ready(function () {
 
     showVin(currentVinIndex);
 
+    // Fonction pour mettre à jour les prix
     function updatePrices() {
         $.ajax({
-            url: "data.json",
+            url: "/assets/js/data.json", // Chemin vers le fichier JSON
             method: "GET",
             dataType: "json",
             success: function (data) {
-                if (data) {
+                if (data.Prix) {
                     // Met à jour les prix dans le DOM
+                    const prices = data.Prix;
                     $('.vin-item').each(function () {
-                        const vinName = $(this).find('h2').text().trim();
-                        if (data[vinName]) {
-                            const priceElement = $(this).find('p[class$="-prix"]');
-                            priceElement.text(data[vinName].toFixed(2));
+                        const vinClass = $(this).find('p[class$="-prix"]').attr('class'); // Récupère la classe CSS
+                        const vinKey = vinClass.split('-prix')[0].replace('prix-', ''); // Extrait la clé
+                        if (prices[vinKey]) {
+                            $(this).find(`.${vinClass}`).text(prices[vinKey].toFixed(2)); // Met à jour le prix
                         }
                     });
                 }
@@ -66,5 +68,6 @@ $(document).ready(function () {
         });
     }
 
+    // Charger les prix au démarrage
     updatePrices();
 });
