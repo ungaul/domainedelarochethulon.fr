@@ -1,10 +1,33 @@
 {
-  "Primeur": 8.2,
-  "Regnie": 9.7,
-  "Morgon": 10.2,
-  "Cote de Brouilly": 10.2,
-  "Vieilles Vignes": 8.2,
-  "Rose": 8.2,
-  "Chardonnay": 10,
-  "Eclat de Gamay": 10.4
+  "wines": {
+    "Primeur": 8.2,
+    "Regnie": 9.7,
+    "Morgon": 10.2,
+    "Cote de Brouilly": 10.2,
+    "Vieilles Vignes": 8.2,
+    "Rose": 8.2,
+    "Chardonnay": 10
+  },
+  "salons": [
+    {
+      "location": "Compi?gne",
+      "edition": 25,
+      "date": "1 janvier"
+    },
+    {
+      "location": "Arpajon",
+      "edition": 25,
+      "date": "2 janvier"
+    },
+    {
+      "location": "Senlis",
+      "edition": 25,
+      "date": "3 janvier"
+    },
+    {
+      "location": "Etr?chy",
+      "edition": 25,
+      "date": "4 janvier"
+    }
+  ]
 }
