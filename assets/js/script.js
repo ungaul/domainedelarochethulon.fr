@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     function updatePrices() {
         $.ajax({
-            url: "https://raw.githubusercontent.com/NomDeVotreUtilisateur/NomDeVotreDepot/main/assets/data.json", // URL du fichier JSON brut sur GitHub
+            url: "data.json",
             method: "GET",
             dataType: "json",
             success: function (data) {
