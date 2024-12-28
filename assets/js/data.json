@@ -34,17 +34,17 @@
     {
       "title": "International du Gamay Or",
       "description": "Notre C?te de Brouilly 2022 a remport? une m?daille d'Or au Concours International du Gamay.",
-      "image": "/assets/images/medailles/international-du-gamay-or.jpg"
+      "image": "/assets/images/medailles/international-du-gamay-or.png"
     },
     {
       "title": "CGA Argent",
       "description": "Notre Morgon 2022 a remport? une m?daille d'Argent au Concours G?n?ral Agricole ? Paris.",
-      "image": "/assets/images/medailles/cga-argent.jpg"
+      "image": "/assets/images/medailles/cga-argent.png"
     },
     {
       "title": "Saint Vincent Macon Or",
       "description": "Notre R?gni? 2022 a remport? une m?daille d'Or ? la Saint Vincent de M?con.",
-      "image": "/assets/images/medailles/saint-vincent-macon-or.jpg"
+      "image": "/assets/images/medailles/saint-vincent-macon-or.png"
     }
   ]
 }
