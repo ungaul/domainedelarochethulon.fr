@@ -6,8 +6,7 @@
     "Cote de Brouilly": 10.2,
     "Vieilles Vignes": 8.2,
     "Rose": 8.2,
-    "Chardonnay": 10,
-    "Eclat de Gamay": 10.4
+    "Chardonnay": 10
   },
   "salons": [
     {
@@ -29,6 +28,23 @@
       "location": "Etrechy - Espace Jean Monnet - Boulevard des Lavandi?res",
       "edition": "26?me March? de No?l",
       "date": "7 et 8 D?cembre 2024"
+    }
+  ],
+  "news": [
+    {
+      "title": "International du Gamay Or",
+      "description": "Notre C?te de Brouilly 2022 a remport? une m?daille d'Or au Concours International du Gamay.",
+      "image": "/assets/images/medailles/international-du-gamay-or.jpg"
+    },
+    {
+      "title": "CGA Argent",
+      "description": "Notre Morgon 2022 a remport? une m?daille d'Argent au Concours G?n?ral Agricole ? Paris.",
+      "image": "/assets/images/medailles/cga-argent.jpg"
+    },
+    {
+      "title": "Saint Vincent Macon Or",
+      "description": "Notre R?gni? 2022 a remport? une m?daille d'Or ? la Saint Vincent de M?con.",
+      "image": "/assets/images/medailles/saint-vincent-macon-or.jpg"
     }
   ]
 }
