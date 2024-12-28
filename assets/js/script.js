@@ -33,41 +33,58 @@ $(document).ready(function () {
             contentSections.show();
         } else {
             contentSections.hide();
-            $('#accueil').show(); // Show the first section by default
+            $('#accueil').show();
         }
     }
 
     $(window).resize(adjustLayout);
 
-    adjustLayout(); // Initial check
+    adjustLayout();
 
     showVin(currentVinIndex);
 
-    // Fonction pour mettre à jour les prix
+    function normalizeKey(key) {
+        return key
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-zA-Z0-9 ]/g, "")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toLowerCase();
+    }
+
     function updatePrices() {
         $.ajax({
-            url: "/assets/js/data.json", // Chemin vers le fichier JSON
+            url: "/assets/js/data.json",
             method: "GET",
             dataType: "json",
             success: function (data) {
-                if (data.Prix) {
-                    // Met à jour les prix dans le DOM
-                    const prices = data.Prix;
+                console.log("JSON data loaded:", data);
+                if (data) {
                     $('.vin-item').each(function () {
-                        const vinClass = $(this).find('p[class$="-prix"]').attr('class'); // Récupère la classe CSS
-                        const vinKey = vinClass.split('-prix')[0].replace('prix-', ''); // Extrait la clé
-                        if (prices[vinKey]) {
-                            $(this).find(`.${vinClass}`).text(prices[vinKey].toFixed(2)); // Met à jour le prix
+                        const vinTitle = $(this).find('h2').text().trim();
+                        const normalizedTitle = normalizeKey(vinTitle);
+                        console.log("Checking vinTitle:", vinTitle, "Normalized:", normalizedTitle);
+
+                        for (const [key, value] of Object.entries(data)) {
+                            const normalizedKey = normalizeKey(key);
+                            console.log("Comparing JSON key:", key, "Normalized:", normalizedKey);
+
+                            if (normalizedKey === normalizedTitle) {
+                                const priceElement = $(this).find('p[class$="-prix"]');
+                                console.log("Match found for:", vinTitle, "Price:", value);
+                                priceElement.text(value.toFixed(2));
+                                break;
+                            }
                         }
                     });
                 }
             },
             error: function (error) {
-                console.error("Erreur lors du chargement du JSON : ", error);
+                console.error("Error loading JSON:", error);
             }
         });
     }
 
-    // Charger les prix au démarrage
     updatePrices();
 });
