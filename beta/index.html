@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-  <link rel="shortcut icon" href="assets/img/favicon.webp" type="image/x-icon" />
+  <link rel="shortcut icon" href="/assets/images/favicon.webp" type="image/x-icon" />
 
   <!-- Google / Search Engine Tags -->
   <meta itemprop="name" content="Domaine de la Roche Thulon" />
@@ -39,7 +39,6 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -48,7 +47,7 @@
   <div id="app">
     <main class="content">
       <header>
-        <a href="/"><img src="assets/img/header.webp" alt="Header" class="header"></a>
+        <a href="/"><img src="/assets/images/header.webp" alt="Header" class="header"></a>
       </header>
 
       <section id="accueil" class="content-section">
@@ -73,13 +72,25 @@
         <p id="exploitation-content">Nous exploitons 14 hectares de vignes aux expositions diverses, sur sols
           granitiques sableux à argilo-sableux. Après les différents travaux effectués tout au long de l'année sur les
           vignes, les raisins sont cueillis manuellement et vinifiés au domaine par nos soins.</p>
-        <img src="assets/img/exploitation.gif" alt="exploitation">
+        <img src="/assets/images/exploitation.gif" alt="exploitation">
       </section>
 
       <section id="vins" class="content-section">
         <h1>Nos Vins</h1>
+        <div id="vins-list">
+          <div style="background:url('/assets/images/etiquettes/Etiquette Chardonnay.jpg')" data-vin="Chardonnay"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Côte de Brouilly.jpg')"
+            data-vin="Cote de Brouilly"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Eclat de Gamay.jpg')"
+            data-vin="Eclat de Gamay"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Morgon.jpg')" data-vin="Morgon"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Primeur.jpg')" data-vin="Primeur"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Rosé.jpg')" data-vin="Rose"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Régnié.jpg')" data-vin="Regnie"></div>
+          <div style="background:url('/assets/images/etiquettes/Etiquette Vieilles Vignes.jpg')"
+            data-vin="Vieilles Vignes"></div>
+        </div>
         <div class="vin-display">
-          <button id="prev-vin"><ion-icon name="chevron-back-outline"></ion-icon></button>
           <div class="vin-list" id="vins-content">
             <div class="vin-item" data-vin="Regnie">
               <img src="/assets/images/bouteilles/Bouteille Régnié.jpg" alt=" Régnié 2022">
@@ -159,7 +170,8 @@
                   <span class="prix"></span>€ TTC
                 </p>
                 <p><strong>Température de service:</strong> Température de service:</p>
-                <p><strong>Détails:</strong> Très agréable en apéritif comme avec des poissons ou viandes blanches…</p>
+                <p><strong>Détails:</strong> Très agréable en apéritif comme avec des poissons ou viandes blanches…
+                </p>
               </div>
             </div>
 
@@ -190,7 +202,6 @@
               </div>
             </div>
           </div>
-          <button id="next-vin"><ion-icon name="chevron-forward-outline"></ion-icon></button>
         </div>
       </section>
 
@@ -204,10 +215,10 @@
 
       <section id="vigne" class="content-section">
         <h1>La Vigne</h1>
-        <div class="vigne-images" id="vigne-content"><img src="assets/img/vigne/1.jpg" alt="Vigne"><img
-            src="assets/img/vigne/2.jpg" alt="Vigne"><img src="assets/img/vigne/3.jpg" alt="Vigne"><img
-            src="assets/img/vigne/4.jpg" alt="Vigne"><img src="assets/img/vigne/5.jpg" alt="Vigne"><img
-            src="assets/img/vigne/6.jpg" alt="Vigne"><img src="assets/img/vigne/7.jpg" alt="Vigne"></div>
+        <div class="vigne-images" id="vigne-content"><img src="/assets/images/vigne/1.jpg" alt="Vigne"><img
+            src="/assets/images/vigne/2.jpg" alt="Vigne"><img src="/assets/images/vigne/3.jpg" alt="Vigne"><img
+            src="/assets/images/vigne/4.jpg" alt="Vigne"><img src="/assets/images/vigne/5.jpg" alt="Vigne"><img
+            src="/assets/images/vigne/6.jpg" alt="Vigne"><img src="/assets/images/vigne/7.jpg" alt="Vigne"></div>
       </section>
 
       <section id="salons" class="content-section">
@@ -238,7 +249,7 @@
         <a href="#salons" class="link"><img src="/assets/images/bouchon.webp" alt="bouchon" class="bouchon">Les
           Salons</a>
       </nav>
-      <p class="updated">Dernière mise à jour : <span>11/07/2024</span></p>
+      <p class="updated">Dernière mise à jour : <span id="lastUpdate"></span></p>
     </aside>
   </div>
 </body>

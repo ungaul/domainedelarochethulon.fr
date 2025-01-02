@@ -1,21 +1,33 @@
 $(document).ready(function () {
-    let currentVinIndex = 0;
     const vins = $('.vin-item');
-    const totalVins = vins.length;
+    const vinsList = $('#vins-list div');
+    const defaultVin = 'primeur';
 
-    function showVin(index) {
-        vins.hide();
-        $(vins[index]).show();
+    function normalizeKey(key) {
+        return key
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9 ]/g, "")
+            .trim();
     }
 
-    $('#prev-vin').click(function () {
-        currentVinIndex = (currentVinIndex - 1 + totalVins) % totalVins;
-        showVin(currentVinIndex);
-    });
+    function showVinByKey(vinKey) {
+        const normalizedKey = normalizeKey(vinKey);
+        vins.hide();
+        const targetVin = vins.filter(function () {
+            return normalizeKey($(this).data('vin')) === normalizedKey;
+        });
+        if (targetVin.length > 0) {
+            targetVin.show();
+        } else {
+            console.warn(`No vin found for key: ${vinKey}`);
+        }
+    }
 
-    $('#next-vin').click(function () {
-        currentVinIndex = (currentVinIndex + 1) % totalVins;
-        showVin(currentVinIndex);
+    vinsList.click(function () {
+        const vinKey = $(this).data('vin');
+        showVinByKey(vinKey);
     });
 
     function adjustLayout() {
@@ -29,7 +41,6 @@ $(document).ready(function () {
 
     $(window).resize(adjustLayout);
     adjustLayout();
-    showVin(currentVinIndex);
 
     $('.link').click(function (e) {
         if ($(window).width() >= 1000) {
@@ -39,15 +50,6 @@ $(document).ready(function () {
             $(target).show();
         }
     });
-
-    function normalizeKey(key) {
-        return key
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-z0-9 ]/g, "")
-            .trim();
-    }
 
     function updateContent() {
         $.ajax({
@@ -69,10 +71,11 @@ $(document).ready(function () {
                 if (data.salons) {
                     const salonsContainer = $('#salons-content');
                     salonsContainer.empty();
+                    salonsContainer.append("<p>Nous allons à votre rencontre en participant à des salons des vins, où nous vous accueillerons toujours chaleureusement. N'hésitez pas à venir accompagnés de votre famille et de vos amis.</p>");
                     data.salons.forEach(salon => {
                         const salonItem = `
                             <div class="salon-item">
-                                <p><strong>Lieu:</strong> ${salon.location}</p>
+                                <p><strong>${salon.location}</strong></p>
                                 <p><strong>Édition:</strong> ${salon.edition}</p>
                                 <p><strong>Date:</strong> ${salon.date}</p>
                             </div>
@@ -99,5 +102,36 @@ $(document).ready(function () {
             }
         });
     }
+
+    function updateLastUpdate() {
+        const lastUpdateElement = $('#lastUpdate');
+        lastUpdateElement.text('Calcul...');
+
+        const repoUrl = 'https://api.github.com/repos/ungaul/domainedelarochethulon.fr';
+        fetch(repoUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const lastUpdate = new Date(data.updated_at);
+                lastUpdateElement.text(lastUpdate.toLocaleString('fr-FR', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                }));
+            })
+            .catch(error => {
+                console.error('Erreur en récupérant la dernière mise à jour :', error);
+                lastUpdateElement.text('Erreur');
+            });
+    }
+
     updateContent();
+    updateLastUpdate();
+    showVinByKey(defaultVin);
 });

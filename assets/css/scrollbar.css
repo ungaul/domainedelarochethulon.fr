@@ -28,18 +28,6 @@
   width: 80%;
 }
 
-button#prev-vin,
-button#next-vin {
-  background: var(--second);
-  color: var(--main);
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 10px;
-  margin: 0 10px;
-  border-radius: 5px;
-}
-
 button#prev-vin:hover,
 button#next-vin:hover {
   background: var(--accent-color);
