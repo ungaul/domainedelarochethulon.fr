@@ -4,12 +4,7 @@ $(document).ready(function () {
     const defaultVin = 'primeur';
 
     function normalizeKey(key) {
-        return key
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-z0-9 ]/g, "")
-            .trim();
+        return key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
     }
 
     function showVinByKey(vinKey) {
@@ -20,13 +15,38 @@ $(document).ready(function () {
         });
         if (targetVin.length > 0) {
             targetVin.show();
-        } else {
-            console.warn(`No vin found for key: ${vinKey}`);
+        }
+    }
+
+    function setURL(section, vinKey = null) {
+        const params = new URLSearchParams();
+        params.set('section', section);
+        if (vinKey) {
+            params.set('vin', vinKey);
+        }
+        history.pushState({}, '', `?${params.toString()}`);
+    }
+
+    function loadFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const section = params.get('section') || 'accueil';
+        const vinKey = params.get('vin');
+
+        $('.content-section').hide();
+        $(`#${section}`).show();
+
+        if (section === 'vins' && vinKey) {
+            showVinByKey(vinKey);
+        } else if (section === 'vins') {
+            showVinByKey(defaultVin);
         }
     }
 
     vinsList.click(function () {
         const vinKey = $(this).data('vin');
+        setURL('vins', vinKey);
+        $('.content-section').hide();
+        $('#vins').show();
         showVinByKey(vinKey);
     });
 
@@ -34,20 +54,17 @@ $(document).ready(function () {
         if ($(window).width() < 1000) {
             $('.content-section').show();
         } else {
-            $('.content-section').hide();
-            $('#accueil').show();
+            loadFromURL();
         }
     }
-
-    $(window).resize(adjustLayout);
-    adjustLayout();
 
     $('.link').click(function (e) {
         if ($(window).width() >= 1000) {
             e.preventDefault();
-            const target = $(this).attr('href');
+            const target = $(this).attr('href').replace('#', '');
+            setURL(target);
             $('.content-section').hide();
-            $(target).show();
+            $(`#${target}`).show();
         }
     });
 
@@ -131,7 +148,10 @@ $(document).ready(function () {
             });
     }
 
+    $(window).resize(adjustLayout);
+    window.addEventListener('popstate', loadFromURL);
+
     updateContent();
     updateLastUpdate();
-    showVinByKey(defaultVin);
+    loadFromURL();
 });
