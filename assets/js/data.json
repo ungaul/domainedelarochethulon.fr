@@ -12,39 +12,39 @@
   "salons": [
     {
       "location": "Compiegne - Place Saint-Jacques",
-      "edition": "36?me Foire aux Vins et Fromage de Compi?gne",
+      "edition": "36ème Foire aux Vins et Fromage de Compiègne",
       "date": "31 Mai et 1er Juin 2024"
     },
     {
-      "location": "Arpajon - Sous la halle du march? d'Arpajon",
-      "edition": "32?me Salon des Vins et Fromages",
+      "location": "Arpajon - Sous la halle du marché d'Arpajon",
+      "edition": "32ème Salon des Vins et Fromages",
       "date": "7 et 8 Juin 2025"
     },
     {
       "location": "Senlis - Quartier Ordener 6/8 rue des Jardiniers",
-      "edition": "30?me Salon des Vins",
+      "edition": "30ème Salon des Vins",
       "date": "15, 16 et 17 Novembre 2024"
     },
     {
-      "location": "Etrechy - Espace Jean Monnet - Boulevard des Lavandi?res",
-      "edition": "26?me March? de No?l",
-      "date": "7 et 8 D?cembre 2024"
+      "location": "Etrechy - Espace Jean Monnet - Boulevard des Lavandières",
+      "edition": "26ème Marché de Noël",
+      "date": "7 et 8 Décembre 2024"
     }
   ],
   "news": [
     {
       "title": "International du Gamay Or",
-      "description": "Notre C?te de Brouilly 2022 a remport? une m?daille d'Or au Concours International du Gamay.",
+      "description": "Notre Côte de Brouilly 2022 a remporté une médaille d'Or au Concours International du Gamay.",
       "image": "/assets/images/medailles/international-du-gamay-or.png"
     },
     {
       "title": "CGA Argent",
-      "description": "Notre Morgon 2022 a remport? une m?daille d'Argent au Concours G?n?ral Agricole ? Paris.",
+      "description": "Notre Morgon 2022 a remporté une médaille d'Argent au Concours Général Agricole à Paris.",
       "image": "/assets/images/medailles/cga-argent.png"
     },
     {
       "title": "Saint Vincent Macon Or",
-      "description": "Notre R?gni? 2022 a remport? une m?daille d'Or ? la Saint Vincent de M?con.",
+      "description": "Notre Régnié 2022 a remporté une médaille d'Or à la Saint Vincent de Mâcon.",
       "image": "/assets/images/medailles/saint-vincent-macon-or.png"
     }
   ]
