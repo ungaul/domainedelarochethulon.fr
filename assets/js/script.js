@@ -29,7 +29,6 @@ $(document).ready(function () {
     }
 
     function showVinByKey(vinKey) {
-        const normalizedKey = normalizeKey(vinKey);
         $('.vin-item').hide();
         const targetVin = $(`.vin-item[data-vin="${vinKey}"]`);
         if (targetVin.length > 0) {
@@ -56,8 +55,6 @@ $(document).ready(function () {
 
         if (section === 'vins' && vinKey) {
             showVinByKey(vinKey);
-        } else if (section === 'vins') {
-            showVinByKey(defaultVin);
         }
     }
 
@@ -127,7 +124,9 @@ $(document).ready(function () {
                     vinListContainer.children('div').click(function () {
                         const vinKey = $(this).data('vin');
                         setURL('vins', vinKey);
-                        $('.vin-item').hide(); // Masquer tous les vins
+                        $('.content-section').hide(); // Masquer toutes les sections
+                        $('#vins').show();            // Afficher la section vins
+                        $('.vin-item').hide();        // Masquer tous les vins
                         $(`.vin-item[data-vin="${vinKey}"]`).show(); // Afficher uniquement le vin sélectionné
                     });
                 }
