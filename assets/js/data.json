@@ -1,4 +1,8 @@
 {
+  "accueil": {
+    "text": "Successeur de deux générations de savoir et de passion, nous exploitons 14 hectares de vignes aux expositions diverses, au coeur du Beaujolais.",
+    "subText": "Sur un relief parfois escarpé, nous cultivons le gamay noir à jus blanc, cépage rouge unique des Beaujolais et le Chardonnay."
+  },
   "wines": {
     "Primeur": {
       "vintage": 2024,
@@ -71,7 +75,7 @@
       "date": "6 et 7 Décembre 2025"
     }
   ],
-  "news": [
+  "medals": [
     {
       "medal": "International du Gamay Or",
       "wine": "Notre Côte de Brouilly 2023 a remporté une médaille d'Or au Concours International du Gamay.",
