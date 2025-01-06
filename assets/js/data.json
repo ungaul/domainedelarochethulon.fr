@@ -1,37 +1,37 @@
 {
   "wines": {
     "Primeur": {
-      "vintage": 2024,
+      "vintage": 2025,
       "description": "Vin festif par excellence, il satisfera votre palais par sa souplesse. Nous le vinifions de façon à préserver au maximum ses arômes de raisin frais.",
       "servingTemp": "13-15°",
       "price": 8.4
     },
     "Régnié": {
-      "vintage": 2022,
+      "vintage": 2023,
       "description": "Il se drape d’une robe rubis aux nuances violacées.Le nez est plein de charme et de fraîcheur, sur des arômes gourmands de fruits rouges comme la framboise et la groseille. En bouche, l’attaque est douce et en souplesse, la matière est ronde, les tannins sont présents et pourront maintenir le vin quelques années en cave.",
       "servingTemp": "15-17°",
       "price": 9.9
     },
     "Morgon": {
-      "vintage": 2022,
+      "vintage": 2023,
       "description": "Le plus structuré de nos vins, il s'exprime souvent par l'alliance des fruits rouges et de la prune avec un côté poivré.",
       "servingTemp": "17-18°",
       "price": 10.4
     },
     "Côte de Brouilly": {
-      "vintage": 2022,
+      "vintage": 2023,
       "description": "Il se pare d'une robe profonde et intense d'un rouge grenat sombre. Le nez est ouvert sur des notes primaires de fruits rouges avec des notes épicées. En bouche l’attaque est franche et généreuse. Les tannins sont soyeux.",
       "servingTemp": "17-18°",
       "price": 10.4
     },
     "Vieilles Vignes": {
-      "vintage": 2022,
+      "vintage": 2023,
       "description": "D'une simplicité toute Beaujolaise, couvrant de nombreuses richesses, notre Beaujolais Villages issu de nos vignes les plus âgées (70 à 80 ans) s'accorde parfaitement avec les mets simples, conviviaux: buffets, cuisine familiale...",
       "servingTemp": "14-16°",
       "price": 8.4
     },
     "Rosé": {
-      "vintage": 2023,
+      "vintage": 2024,
       "description": "Sa fraîcheur et ses arômes de petits fruits rouges et d'agrumes en font le vin estival par excellence... A apprécier entre amis.",
       "servingTemp": "8-9°",
       "price": 8.4
