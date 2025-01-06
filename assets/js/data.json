@@ -74,15 +74,18 @@
   "medals": [
     {
       "medal": "International du Gamay Or",
-      "wine": "Notre Côte de Brouilly 2023 a remporté une médaille d'Or au Concours International du Gamay."
+      "wine": "Notre Côte de Brouilly 2023 a remporté une médaille d'Or au Concours International du Gamay.",
+      "imageUrl": "assets/images/medailles/international-du-gamay-or.png"
     },
     {
       "medal": "CGA Or",
-      "wine": "Notre Morgon 2023 a remporté une médaille d'Argent au Concours Général Agricole à Paris."
+      "wine": "Notre Morgon 2023 a remporté une médaille d'Argent au Concours Général Agricole à Paris.",
+      "imageUrl": "assets/images/medailles/cga-or.png"
     },
     {
       "medal": "Saint Vincent Macon Or",
-      "wine": "Notre Régnié 2023 a remporté une médaille d'Or à la Saint Vincent de Mâcon."
+      "wine": "Notre Régnié 2023 a remporté une médaille d'Or à la Saint Vincent de Mâcon.",
+      "imageUrl": "assets/images/medailles/saint-vincent-macon-or.png"
     }
   ]
 }
