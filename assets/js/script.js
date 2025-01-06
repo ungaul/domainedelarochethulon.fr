@@ -1,18 +1,37 @@
 $(document).ready(function () {
-    const vins = $('.vin-item');
-    const vinsList = $('#vins-list div');
-    const defaultVin = 'primeur';
-
     function normalizeKey(key) {
         return key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
     }
 
+    function createVinElement(key, data) {
+        return `
+            <div class="vin-item" data-vin="${key}">
+                <img src="/assets/images/bouteilles/Bouteille ${key}.jpg" alt="${data.vintage} ${key}">
+                <div>
+                    <h2>${key} ${data.vintage}</h2>
+                    <p>${data.description}</p>
+                    <p><strong>Prix: </strong>
+                        <span class="prix">${data.price.toFixed(2)}</span>€ TTC
+                    </p>
+                    <p><strong class="temp">Température de service:</strong> ${data.servingTemp}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    function createMedalElement(medal) {
+        return `
+            <div class="medal-item">
+                <img src="${medal.imageUrl}" alt="Médaille ${medal.medal}">
+                <p><strong>${medal.medal}</strong> pour <em>${medal.wine}</em></p>
+            </div>
+        `;
+    }
+
     function showVinByKey(vinKey) {
         const normalizedKey = normalizeKey(vinKey);
-        vins.hide();
-        const targetVin = vins.filter(function () {
-            return normalizeKey($(this).data('vin')) === normalizedKey;
-        });
+        $('.vin-item').hide();
+        const targetVin = $(`.vin-item[data-vin="${vinKey}"]`);
         if (targetVin.length > 0) {
             targetVin.show();
         }
@@ -42,14 +61,6 @@ $(document).ready(function () {
         }
     }
 
-    vinsList.click(function () {
-        const vinKey = $(this).data('vin');
-        setURL('vins', vinKey);
-        $('.content-section').hide();
-        $('#vins').show();
-        showVinByKey(vinKey);
-    });
-
     function adjustLayout() {
         if ($(window).width() < 1000) {
             $('.content-section').show();
@@ -74,17 +85,77 @@ $(document).ready(function () {
             method: "GET",
             dataType: "json",
             success: function (data) {
+
+                if (data.staticContent) {
+                    $('#accueil-content').html(data.staticContent.accueil);
+                    $('#exploitation-content').html(data.staticContent.exploitation);
+                }
+
                 if (data.wines) {
-                    $('.vin-item').each(function () {
-                        const vinKey = normalizeKey($(this).data('vin'));
-                        for (const [key, value] of Object.entries(data.wines)) {
-                            if (vinKey === normalizeKey(key)) {
-                                $(this).find('.prix').text(value.toFixed(2));
-                                break;
-                            }
-                        }
+                    const vinListContainer = $('.vins-list');
+                    const vinContentContainer = $('#vins-content');
+
+                    vinListContainer.empty();
+                    vinContentContainer.empty();
+
+                    Object.keys(data.wines).forEach(vinKey => {
+
+                        // Génération des étiquettes
+                        const vinElement = `
+                            <div style="background:url('/assets/images/etiquettes/min/Etiquette ${vinKey}.jpg')" data-vin="${vinKey}">
+                            </div>
+                        `;
+                        vinListContainer.append(vinElement);
+
+                        // Génération des détails des vins
+                        const vinDetails = data.wines[vinKey];
+                        const vinContent = `
+                            <div class="vin-item" data-vin="${vinKey}">
+                                <img src="/assets/images/bouteilles/Bouteille ${vinKey}.jpg" alt="${vinDetails.vintage} ${vinKey}">
+                                <div>
+                                    <h2>${vinKey} ${vinDetails.vintage}</h2>
+                                    <p>${vinDetails.description}</p>
+                                    <p><strong>Prix: </strong><span class="prix">${vinDetails.price.toFixed(2)}</span>€ TTC</p>
+                                    <p><strong class="temp">Température de service:</strong> ${vinDetails.servingTemp}</p>
+                                </div>
+                            </div>
+                        `;
+                        vinContentContainer.append(vinContent);
+                    });
+
+                    // Ajouter un clic dynamique pour chaque vin dans la liste
+                    vinListContainer.children('div').click(function () {
+                        const vinKey = $(this).data('vin');
+                        setURL('vins', vinKey);
+                        $('.vin-item').hide(); // Masquer tous les vins
+                        $(`.vin-item[data-vin="${vinKey}"]`).show(); // Afficher uniquement le vin sélectionné
                     });
                 }
+
+                if (data.accueil) {
+                    const accueilContainer = $('#accueil-content');
+                    accueilContainer.empty();
+                    const accueilHTML = `
+                        <p>${data.accueil.text}</p>
+                        <p>${data.accueil.subText}</p>
+                    `;
+                    accueilContainer.append(accueilHTML);
+                }
+
+                if (data.news) {
+                    const newsContainer = $('#actualites-content');
+                    newsContainer.empty();
+                    data.news.forEach(news => {
+                        const newsItem = `
+                            <div class="news-item">
+                                <img src="${news.imageUrl}" alt="Actualité Image">
+                                <p>${news.wine}</p>
+                            </div>
+                        `;
+                        newsContainer.append(newsItem);
+                    });
+                }
+
                 if (data.salons) {
                     const salonsContainer = $('#salons-content');
                     salonsContainer.empty();
@@ -100,17 +171,13 @@ $(document).ready(function () {
                         salonsContainer.append(salonItem);
                     });
                 }
-                if (data.news) {
-                    const newsContainer = $('#actualites-content');
-                    newsContainer.empty();
-                    data.news.forEach(news => {
-                        const newsItem = `
-                            <div class="news-item">
-                                <img src="${news.image}" alt="Actualité Image">
-                                <p>${news.description}</p>
-                            </div>
-                        `;
-                        newsContainer.append(newsItem);
+
+                if (data.medals) {
+                    const medalsContainer = $('#medals-content');
+                    medalsContainer.empty();
+                    data.medals.forEach(medal => {
+                        const medalElement = createMedalElement(medal);
+                        medalsContainer.append(medalElement);
                     });
                 }
             },

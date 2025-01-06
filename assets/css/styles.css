@@ -219,10 +219,7 @@ a {
     gap: 15px;
     background: var(--accent-color);
     padding: 15px;
-}
-
-#accueil-content p:last-child {
-    display: none;
+    text-align: center;
 }
 
 #actualites {
@@ -256,13 +253,14 @@ a {
 
 .news-item p {
     text-align: center;
+    max-width: 500px;
 }
 
 .news-item img {
     width: 100px;
 }
 
-.vin-list {
+#vins-content {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -274,7 +272,7 @@ a {
     padding: 7.5px 15px;
 }
 
-#vins-list {
+.vins-list {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -283,7 +281,7 @@ a {
     padding: 15px;
 }
 
-#vins-list div {
+.vins-list div {
     width: 110px;
     min-width: 8vw;
     aspect-ratio: 13/14;
