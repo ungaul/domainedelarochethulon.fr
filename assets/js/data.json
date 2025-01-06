@@ -1,8 +1,4 @@
 {
-  "accueil": {
-    "text": "Successeur de deux générations de savoir et de passion, nous exploitons 14 hectares de vignes aux expositions diverses, au coeur du Beaujolais.",
-    "subText": "Sur un relief parfois escarpé, nous cultivons le gamay noir à jus blanc, cépage rouge unique des Beaujolais et le Chardonnay."
-  },
   "wines": {
     "Primeur": {
       "vintage": 2024,
@@ -75,7 +71,7 @@
       "date": "6 et 7 Décembre 2025"
     }
   ],
-  "medals": [
+  "news": [
     {
       "medal": "International du Gamay Or",
       "wine": "Notre Côte de Brouilly 2023 a remporté une médaille d'Or au Concours International du Gamay.",
@@ -91,5 +87,9 @@
       "wine": "Notre Régnié 2023 a remporté une médaille d'Or à la Saint Vincent de Mâcon.",
       "imageUrl": "assets/images/medailles/saint-vincent-macon-or.png"
     }
-  ]
+  ],
+  "staticContent": {
+    "accueil": "Successeur de deux générations de savoir et de passion, nous exploitons 14 hectares de vignes aux expositions diverses, au coeur du Beaujolais.",
+    "exploitation": "Sur un relief parfois escarpé, nous cultivons le gamay noir à jus blanc, cépage rouge unique des Beaujolais et le Chardonnay."
+  }
 }
