@@ -1,11 +1,5 @@
 {
   "wines": {
-    "Vins": {
-      "vintage": "",
-      "description": "",
-      "servingTemp": "",
-      "price": null
-    },
     "Primeur": {
       "vintage": 2024,
       "description": "Vin festif par excellence, il satisfera votre palais par sa souplesse. Nous le vinifions de façon à préserver au maximum ses arômes de raisin frais.",
@@ -57,11 +51,6 @@
   },
   "salons": [
     {
-      "location": "Salons",
-      "edition": "",
-      "date": ""
-    },
-    {
       "location": "Compiegne - Place Saint-Jacques",
       "edition": "36ème Foire aux Vins et Fromage de Compiègne",
       "date": "31 Mai et 1er Juin 2025"
@@ -75,6 +64,11 @@
       "location": "Senlis - Quartier Ordener 6/8 rue des Jardiniers",
       "edition": "30ème Salon des Vins",
       "date": "21, 22, 23 Novembre 2025"
+    },
+    {
+      "location": "Etrechy - Espace Jean Monnet - Boulevard des Lavandières",
+      "edition": "26ème Marché de Noël",
+      "date": "6 et 7 Décembre 2025"
     }
   ],
   "medals": [
