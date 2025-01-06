@@ -1,7 +1,7 @@
 {
   "wines": {
     "Primeur": {
-      "vintage": "",
+      "vintage": 2025,
       "description": "Vin festif par excellence, il satisfera votre palais par sa souplesse. Nous le vinifions de façon à préserver au maximum ses arômes de raisin frais.",
       "servingTemp": "13-15°",
       "price": 8.4
