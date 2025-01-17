@@ -96,15 +96,11 @@ $(document).ready(function () {
                     vinContentContainer.empty();
 
                     Object.keys(data.wines).forEach(vinKey => {
-
-                        // Génération des étiquettes
                         const vinElement = `
                             <div style="background:url('/assets/images/etiquettes/min/Etiquette ${vinKey}.jpg')" data-vin="${vinKey}">
                             </div>
                         `;
                         vinListContainer.append(vinElement);
-
-                        // Génération des détails des vins
                         const vinDetails = data.wines[vinKey];
                         const vinContent = `
                             <div class="vin-item" data-vin="${vinKey}">
@@ -119,15 +115,13 @@ $(document).ready(function () {
                         `;
                         vinContentContainer.append(vinContent);
                     });
-
-                    // Ajouter un clic dynamique pour chaque vin dans la liste
                     vinListContainer.children('div').click(function () {
                         const vinKey = $(this).data('vin');
                         setURL('vins', vinKey);
-                        $('.content-section').hide(); // Masquer toutes les sections
-                        $('#vins').show();            // Afficher la section vins
-                        $('.vin-item').hide();        // Masquer tous les vins
-                        $(`.vin-item[data-vin="${vinKey}"]`).show(); // Afficher uniquement le vin sélectionné
+                        $('.content-section').hide();
+                        $('#vins').show();
+                        $('.vin-item').hide(); 
+                        $(`.vin-item[data-vin="${vinKey}"]`).show();
                     });
                 }
 
